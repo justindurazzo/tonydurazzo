@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://justindurazzo.github.io/tonydurazzo/sitemap.xml
