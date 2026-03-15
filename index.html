@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Durazzo Memorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: white;
+            color: rgb(66, 66, 66);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-wide {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .site-title {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 10px;
+            color: #212121;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: rgb(168, 168, 168);
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #212121;
+        }
+
+        nav a.active {
+            color: #212121;
+            font-weight: 700;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .page-content {
+            padding: 60px 0 100px;
+        }
+
+        .article-title {
+            font-size: 27px;
+            font-weight: 700;
+            color: rgb(33, 33, 33);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .article-date {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgb(168, 168, 168);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .article {
+            margin-bottom: 100px;
+            padding-bottom: 100px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .article p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .article p.italic {
+            font-style: italic;
+        }
+
+        .article img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 40px 0;
+            display: block;
+        }
+
+        .about-image-block {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .about-image-block .image-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-block .image-container img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
+
+        .about-image-block .image-caption {
+            font-size: 13px;
+            color: rgb(168, 168, 168);
+            margin-top: 8px;
+            text-align: left;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: rgb(168, 168, 168);
+            text-align: center;
+            margin-top: 30px;
+            letter-spacing: 1px;
+        }
+
+        .newsletter {
+            background-color: #f5f5f5;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 60px 0;
+            border-radius: 0;
+        }
+
+        .newsletter h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            flex: 0 1 300px;
+            font-family: inherit;
+        }
+
+        .newsletter-form button {
+            padding: 12px 30px;
+            background-color: #212121;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #555;
+        }
+
+        .newsletter-privacy {
+            font-size: 12px;
+            color: rgb(168, 168, 168);
+        }
+
+        .video-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .video-section h2 {
+            font-size: 27px;
+            font-weight: 700;
+            color: rgb(33, 33, 33);
+            margin-bottom: 60px;
+        }
+
+        .video-embed {
+            margin-bottom: 60px;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .music-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .music-section p {
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .spotify-embed {
+            margin: 40px 0;
+        }
+
+        .spotify-embed iframe {
+            width: 100%;
+            height: 380px;
+            border: none;
+        }
+
+        .donate-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .donate-section h2 {
+            font-size: 27px;
+            font-weight: 700;
+            color: rgb(33, 33, 33);
+            margin-bottom: 30px;
+        }
+
+        .donate-section p {
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .donate-button {
+            padding: 15px 50px;
+            background-color: #212121;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .donate-button:hover {
+            background-color: #555;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .photo-grid-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #f5f5f5;
+        }
+
+        .photo-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover {
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 48px;
+                letter-spacing: 6px;
+                padding: 40px 20px 30px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+
+            .article-title {
+                font-size: 22px;
+            }
+
+            .page-content {
+                padding: 40px 0 60px;
+            }
+
+            .article {
+                margin-bottom: 60px;
+                padding-bottom: 60px;
+            }
+
+            .newsletter {
+                padding: 30px 20px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                flex: 1 1 100%;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-title {
+                font-size: 36px;
+                letter-spacing: 4px;
+                padding: 30px 15px 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .article-title {
+                font-size: 20px;
+            }
+
+            .article p {
+                text-align: left;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spotify-embed iframe {
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="site-title">Tony Durazzo</h1>
+        <nav>
+            <a href="#about" onclick="navigate('about')">About</a>
+            <a href="#posts" onclick="navigate('posts')">Posts</a>
+            <a href="#photos" onclick="navigate('photos')">Photos</a>
+            <a href="#video" onclick="navigate('video')">Video</a>
+            <a href="#music" onclick="navigate('music')">Music</a>
+            <a href="#donate" onclick="navigate('donate')">Donate</a>
+        </nav>
+    </header>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page active">
+        <div class="container page-content">
+            <p style="text-align: center; margin-bottom: 40px; font-size: 16px; line-height: 1.7;">This site is dedicated to the man and legend we all knew, as we celebrate the BEST life lived. His huge personality and reputation traveled well and far, touching hundreds of people and collecting the richest, most incredible stories along the way. Rest in peace Tone, as we try to carry on your legacy - and keep the flame burning.</p>
+
+            <div class="about-image-block">
+                <div class="image-container" style="padding-bottom: 100%;">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495231737020-3PL8UWX4YHIBXN54ABY6/image-asset.jpeg" alt="Photo: Daniel Krieger">
+                </div>
+                <div class="image-caption">Photo: Daniel Krieger</div>
+            </div>
+
+            <div class="about-image-block">
+                <div class="image-container" style="padding-bottom: 71.44%;">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495243188914-V5APKZNSQI7GXD3K8J0S/image-asset.jpeg" alt="Portrait of a Man | 2014 | Dustin Yellin">
+                </div>
+                <div class="image-caption">Portrait of a Man | 2014 | Dustin Yellin</div>
+            </div>
+
+            <div class="about-image-block">
+                <div class="image-container" style="padding-bottom: 75.24%;">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495289878649-JHIUJYXTIQLFZRCDVEE3/image-asset.jpeg" alt="Frankies Spuntino Kitchen Companion &amp; Cooking Manual | 2010">
+                </div>
+                <div class="image-caption">Frankies Spuntino Kitchen Companion &amp; Cooking Manual | 2010</div>
+            </div>
+
+            <div class="newsletter">
+                <h3>Get Updates</h3>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing.');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- POSTS PAGE -->
+    <div id="posts" class="page">
+        <div class="container page-content">
+            <!-- POST 1 -->
+            <article class="article">
+                <h2 class="article-title">Too Big To Die: In Memoriam</h2>
+                <p class="article-date">June 03, 2017</p>
+
+                <p class="italic">(The eulogy for Tony Durazzo, as read by Justin Durazzo at the funeral service on Monday, May 22, 2017).</p>
+
+                <p>This is gonna be one big name drop...</p>
+
+                <p>So. How can you sum up a life this big? How do you write anything short of a novel to honor a guy like my uncle? To capture the essence of the man in a few minutes of memorial reflection?</p>
+
+                <p>About eight or nine years ago, I had a very genuine conversation with Tonio (Tony, Antonio - however you knew him) while sitting at the bar of Frankies Spuntino in Carroll Gardens, Brooklyn as he filled me in on aspects of his life I hadn't yet encountered — and hundreds of characters he'd weave poetically into stories over Sunday dinners — but now was first the first time in my life I was beginning to witness them firsthand.</p>
+
+                <p>It occurred to me that someone should be writing his biography. Here you have this native Neapolitan, New Yorker from our family of eight brothers and sisters, twenty first grandchildren (and more), and several dozen different social circles that don't know the other exists — this world traveler with a personality big enough to break through any wall, a Mets fan, a foodie, a music-head, a draftsman, an artist. I told him he should write a book and he said, 'Yeah but it can't come out until after I die.'</p>
+
+                <p>And we'd just laugh. Everything with Uncle Tony was laughter. The kind of laughter so deep, you'd cry. Sometimes to the point of not being able to breathe.</p>
+
+                <p>I mean, this was the man who once owned a pet monkey. In New York City! But somehow, with Tonio, it all made sense. And if you asked him a question, he'd tell you a story. And that's something I learned from him. You could ask him what he had for dinner the night before and you'd get a 20-minute deep-dive into the origin of the restaurant, the chef, the sommelier, the Barolo... and you'd be glued to every second of it because his delivery was so effortless and every detail was so captivating.</p>
+
+                <p>And through this seemingly mundane question, through all the chapters and characters, the punchline, the long-winded detours and tangent stories, within these Tony Durazzo tales... you didn't realize what you were doing until afterward: you were learning. You were always learning. And that's the gift of Tonio.</p>
+
+                <p>Memories. While I can't seem to remember my earliest one, I think it's traced back to my grandmother's Sunday dinner table eating a plate of red sauce ziti, waiting to hear one of the most incredible stories you could imagine. This would set the stage for decades of his Tony Durazzo tales.</p>
+
+                <p>From our youngest days, he brought us all these things we never knew existed — cutting edge toys and technology, musical instruments, tools for education, concert tickets like upfront seats to Julian Lennon, INXS, Pearl Jam, boxed seats kissing third base at Shea Stadium — whatever we knew we either wanted or often weren't even yet aware of.</p>
+
+                <p>He introduced us to the 'best' in music: XTC, Ben Lee, They Might Be Giants, Evan Dando and the Lemonheads, Weezer and Green Day to name a few. And by the time we thought we'd caught up, he was already on to the next. As hard as we tried to stay current, he was always ahead of the curve, and every time we'd see him, we'd pick his brain to see what he'd offer up... only to use it on our own friends and let others knew we had our fingers on the pulse. He was a legend.</p>
+
+                <p>And so the thing about Tony is that most of what he said, was true:</p>
+
+                <p>The 1000 Grateful Dead shows (even though he never bought a ticket).<br>The published meatball recipes in famous hipster Brooklyn cookbooks.<br>Hanging with The Black Crowes, Kate Hudson and Chris Robinson, stories of DiCaprio, and Bill Clinton hanging out at Frankies 457. All true. A series of vivid, beautifully woven together stories that one could only aspire to.</p>
+
+                <p>If you mentioned his name around town, people would unanimously sing his praises. He's a legend. A Peter Pan-like character to some. Always wanting to stay young, spending time with those who kept him young, constantly pushing the bar for how much more he could experience — 'the next best meal, the next best record, the greatest piece of art he's ever seen' — and the more he hung around, the more laughs would transpire, new stories get written and people stay inspired. Friends, friends of friends and families of friends of friends... it didn't matter how long you may have known him or even the last time you even saw him. He was still always there, ready to pick things back up again. Ready to tell another story.</p>
+
+                <p>And that laugh though. If you're ever missing him, I urge you to watch a video of him telling you a joke - it'll all come right back to you.</p>
+
+                <p>As a child I was told (by my father Neil and Uncles Frank and Benny) that Tonio needed to be at the center of things. He always had to be where the action was. And to most of us, that's no surprise. His closest of friends (Frank Falcinelli) likened him to a Forrest Gump figure, for all the people he knows and places he'd been were mind-blowing. Backstage lounge with Crosby Still and Nash? He was there. Hanging with the Jerry Garcia and the jam band? He was there.</p>
+
+                <p>This was the man who walked into the Fillmore East and Carnegie Hall whenever he so pleased.<br>The guy who got the very same cab driver more than a single time!</p>
+
+                <p>Dropped in from the upper deck at Madison Square Garden for a Jethro Tull concert.<br>Camping the Grand Canyon for weeks at a time.<br>Hair and beard so long,<br>working abroad for a handful of months in Riyadh (Saudi Arabia).<br>Penning with precision on the drafting desks of Durrell.<br>To dining at the Michelin star restaurants of the world.<br>Bring in Don Pintabona of Tribeca Grill, Renee Redzepi @ Noma, Danny Bowien from Mission Chinese, Dustin Yellin, and the celebrity all-star team at Pioneer Works...</p>
+
+                <p>He flew to Amsterdam at the drop of a dime.<br>Never wore a hat, sunglasses, gloves or bag.<br>Always present with passport in pocket.<br>Never drove or even had a license.</p>
+
+                <p>A father / uncle to kids rather than their (biological) parents.<br>He was never a slave to money or possessions.<br>A progressive thinking guy, who marched to the beat of his own drum and made up his own rules. He led me to believe that there's always more out there if you keep looking and you keep pushing. The world is ENDLESS, but life has it's deadline, so live it to its fullest. And take it all in. Surround yourself with good people. Live your life like it's the only one you have — because it is. And love each other. It's too precious to hold grudges.</p>
+
+                <p>We're all a little bit older today. We're all a little bit poorer today. We're all a bit changed in some new way as we try to find our way forward. Until we're richer once again. As the stories start to surface and come across us like a warm summer breeze. And the people who carry on his spirit around us take a bit of the Tony Durazzo with them everyday.</p>
+
+                <p>As I struggled to find a singular theme for this memoir, I begin and then end with the idea that nothing really ever ends <b>his</b> story. Even when the cancer took him. You can take the flesh, but you can't take the man.</p>
+
+                <p>Uncle Tony, may your legend live on. You're <b>too big to die.</b></p>
+
+                <p class="italic">(Thanks to Damon Boelte who said it briefly, but best. Then play Brokedown Palace by the Grateful Dead cupping an iPhone speaker through the mic and sound system of the Church... 'Fare you well, fare you well, we love you more than words can tell, listen to the river sing sweet songs, to rock our soul.'):</p>
+
+                <div style="margin: 40px 0; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                    <iframe id="yt-embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube-nocookie.com/embed/A9uyMjzmT3k?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <a id="yt-fallback" href="https://www.youtube.com/watch?v=A9uyMjzmT3k" target="_blank" style="display:none; position: absolute; top: 0; left: 0; width: 100%; height: 100;">
+                        <img src="https://img.youtube.com/vi/A9uyMjzmT3k/hqdefault.jpg" alt="Grateful Dead - Brokedown Palace" style="width:100%; height:100%; object-fit:cover;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(0,0,0,0.7); border-radius:12px; display:flex; align-items:center; justify-content:center;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 20px; border-color:transparent transparent transparent white; margin-left:4px;"></div>
+                        </div>
+                    </a>
+                </div>
+                <script>
+                    (function(){
+                        var f = document.getElementById('yt-embed');
+                        f.onerror = function(){
+                            f.style.display='none';
+                            document.getElementById('yt-fallback').style.display='block';
+                        };
+                        setTimeout(function(){
+                            try {
+                                if(f.contentWindow && f.contentWindow.length === 0 && window.location.protocol === 'file:') {
+                                    f.style.display='none';
+                                    document.getElementById('yt-fallback').style.display='block';
+                                }
+                            } catch(e) {}
+                        }, 2000);
+                    })();
+                </script>
+
+                <div class="article-meta">COMMENT | 2 LIKES | SHARE</div>
+            </article>
+
+            <!-- POST 2 -->
+            <article class="article">
+                <h2 class="article-title">Larger Than Life - A Celebration</h2>
+                <p class="article-date">May 30, 2017</p>
+
+                <p>Please join us for a celebration of Tony's life - the way he always wanted - no crying! And all of his family, friends, friends of friends and their families in one place telling stories over food, drinks and music (a very prescriptive playlist he told us to play) and <em>more</em>. Spread the word to those who knew him and would also like to attend. Come share your own stories about the MAN and carry on his good vibes:</p>
+
+                <p><b>Saturday, June 3, 2017</b></p>
+                <p>6:30pm - 9:30pm</p>
+                <p>153 Pioneer Street, Brooklyn NY (Adjacent to Pioneer Works)</p>
+                <p>Food: Frankies Spuntino</p>
+                <p>Beverages: Grand Army</p>
+
+                <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496179189045-R3RGAKJB6INKB4E1JZDP/image-asset.jpeg" alt="The Studio">
+
+                <div class="article-meta">COMMENT | 1 LIKES | SHARE</div>
+            </article>
+
+            <!-- POST 3 -->
+            <article class="article">
+                <h2 class="article-title">In Memory of Antonio Durazzo (1949 - 2017)</h2>
+                <p class="article-date">May 19, 2017</p>
+
+                <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495228609962-D62QCQF32IUOVE27YAQO/image-asset.jpeg" alt="Photo: Daniel Krieger">
+
+                <p>Last night, Tony left us peacefully after a long, hard-fought battle. We'll be using this site to share details about his life and keep you posted as we organize a memorial to celebrate the BEST life lived. He is a legend and has affected us all in the biggest ways possible.</p>
+
+                <p><b>MEMORIAL SERVICES</b><br>Sunday, May 21, 2017<br>Viewing @ Harmon Funeral Home (2pm - 4pm / 7pm - 9pm)</p>
+
+                <p>Monday, May 22, 2017<br>Funeral Service @ Our Lady of Good Counsel (11am)</p>
+
+                <p>Saturday, June 3, 2017<br>Celebration @ 153 Pioneer Street - Adjacent to Pioneer Works (6:30pm - 9:30pm)<br>'Tony Durazzo: Larger Than Life'</p>
+
+                <p>Contact</p>
+
+                <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495234831346-0WFYHJ1NNKQ3JJ9NQE52/image-asset.jpeg" alt="">
+
+                <div class="article-meta">1 COMMENT | 35 LIKES | SHARE</div>
+            </article>
+
+            <div class="newsletter">
+                <h3>Get Updates</h3>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing.');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTOS PAGE -->
+    <div id="photos" class="page">
+        <div class="container-wide page-content">
+            <div class="photo-grid">
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495429179938-MIY9FSWER9YMVH91FSUX/tony.jpg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495429179938-MIY9FSWER9YMVH91FSUX/tony.jpg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495384183397-8LHOYAYN94RMX13ENCSR/FullSizeRender.jpg.jpeg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495384183397-8LHOYAYN94RMX13ENCSR/FullSizeRender.jpg.jpeg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237378148-5GHYE6RXGHRN7VZAWM6P/Tony+in+the+skybox.jpg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237378148-5GHYE6RXGHRN7VZAWM6P/Tony+in+the+skybox.jpg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237476042-WEZU7BDA9N76C8OY305C/Screen+Shot+2017-05-19+at+4.32.25+PM.png')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237476042-WEZU7BDA9N76C8OY305C/Screen+Shot+2017-05-19+at+4.32.25+PM.png" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496514234705-5AL74W5IIA38VN3MC1T0/santa.jpg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496514234705-5AL74W5IIA38VN3MC1T0/santa.jpg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496514682716-KFMNI2HRFIS9DMK98143/passport.jpg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496514682716-KFMNI2HRFIS9DMK98143/passport.jpg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495380558333-8Z8WHQ4PQPZW7J6FW2QS/IMG_0029.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495380558333-8Z8WHQ4PQPZW7J6FW2QS/IMG_0029.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237999527-IQ7MHVKH3LZLYM15MASU/IMG_4375.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237999527-IQ7MHVKH3LZLYM15MASU/IMG_4375.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237956004-QRK33GK1I1IH8E5EJED0/IMG_4399.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237956004-QRK33GK1I1IH8E5EJED0/IMG_4399.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238071516-PDVE94D77BTJ8IHP0PTJ/IMG_4393.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238071516-PDVE94D77BTJ8IHP0PTJ/IMG_4393.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237620437-H8QYY3WVXWRN5IL60Q42/IMG_4402.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237620437-H8QYY3WVXWRN5IL60Q42/IMG_4402.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238056345-DTSR3VZLLIMUFWUIF32I/IMG_4388.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238056345-DTSR3VZLLIMUFWUIF32I/IMG_4388.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237720234-BLZ0GFXN56RHNKFD5GJR/IMG_4414.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237720234-BLZ0GFXN56RHNKFD5GJR/IMG_4414.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237993576-YMU1MMC1A4RTYE74BAEH/IMG_4374.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237993576-YMU1MMC1A4RTYE74BAEH/IMG_4374.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237631651-QF9P3EGQOWYNTCEI033U/IMG_4400.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237631651-QF9P3EGQOWYNTCEI033U/IMG_4400.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237817229-0R6WO1W987SR3KA36PHY/IMG_3361.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237817229-0R6WO1W987SR3KA36PHY/IMG_3361.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237935119-3SOVNGIIJPNW4MKDFY32/IMG_4408.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237935119-3SOVNGIIJPNW4MKDFY32/IMG_4408.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237850077-GLR3NES1VY0H78Z7DYM5/IMG_3362.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237850077-GLR3NES1VY0H78Z7DYM5/IMG_3362.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238049055-0P38NQXVH85IIW20IREH/IMG_4387.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238049055-0P38NQXVH85IIW20IREH/IMG_4387.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237649197-PV2GNWZ67J0CR9FHJNV4/IMG_4405.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237649197-PV2GNWZ67J0CR9FHJNV4/IMG_4405.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495287189050-HSGT2FNKUU9D603GTWKK/IMG_5837.JPG.jpeg')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495287189050-HSGT2FNKUU9D603GTWKK/IMG_5837.JPG.jpeg" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237875503-DFUT5KYYELCUT4RQHC9B/IMG_4383.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237875503-DFUT5KYYELCUT4RQHC9B/IMG_4383.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237524420-AWOKBS7MAELD8UUVE11F/IMG_4369.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237524420-AWOKBS7MAELD8UUVE11F/IMG_4369.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237579612-8114AURA92Q62RORBION/IMG_4392.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237579612-8114AURA92Q62RORBION/IMG_4392.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238084430-4FVB9JUDELMXDD7JTJJA/IMG_4394.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238084430-4FVB9JUDELMXDD7JTJJA/IMG_4394.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237572920-H4OVK01ZQFSA8TRAJ1RN/IMG_4389.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237572920-H4OVK01ZQFSA8TRAJ1RN/IMG_4389.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237777790-WLLCHU5ZL8UEECHC7KS8/IMG_4416.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237777790-WLLCHU5ZL8UEECHC7KS8/IMG_4416.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238022500-GSPBJRS0E9IHMR5AAZ8V/IMG_4377.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238022500-GSPBJRS0E9IHMR5AAZ8V/IMG_4377.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237708225-RC105437ZM4A2MYP9883/IMG_4410.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237708225-RC105437ZM4A2MYP9883/IMG_4410.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238038841-DXBNYG6ZZXUPUQE0C51K/IMG_4385.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495238038841-DXBNYG6ZZXUPUQE0C51K/IMG_4385.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237783536-ZJRYM0AWFCTFK32XQ2WL/IMG_4418.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237783536-ZJRYM0AWFCTFK32XQ2WL/IMG_4418.JPG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237811961-NZKQOMZUGSHCKY95081/IMG_3296.PNG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237811961-NZKQOMZUGSHCKY95081/IMG_3296.PNG" alt="Gallery photo">
+                </div>
+                <div class="photo-grid-item" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237655879-EX3VKMZ872ZNLKT2QPL9/IMG_4406.JPG')">
+                    <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495237655879-EX3VKMZ872ZNLKT2QPL9/IMG_4406.JPG" alt="Gallery photo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO PAGE -->
+    <div id="video" class="page">
+        <div class="container page-content">
+            <div class="video-section">
+                <h2>Tony had a LUST FOR LIFE</h2>
+
+                <div class="video-embed">
+                    <iframe src="https://player.vimeo.com/video/220121977" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-embed">
+                    <iframe src="https://player.vimeo.com/video/220097519" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-embed">
+                    <iframe src="https://player.vimeo.com/video/220100155" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <div class="video-embed">
+                    <iframe src="https://player.vimeo.com/video/220138353" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MUSIC PAGE -->
+    <div id="music" class="page">
+        <div class="container page-content">
+            <div class="music-section">
+                <p>Here are just a few of the tunes, he prescriptively told us to play in his honor.<br>Stories upon stories behind each and every one...</p>
+
+                <div class="spotify-embed">
+                    <iframe src="https://open.spotify.com/embed/user/djai695/playlist/6BqqkNXHEyblLl1Tkoyss9" height="380" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DONATE PAGE -->
+    <div id="donate" class="page">
+        <div class="container page-content">
+            <div class="donate-section">
+                <h2>Help Children Fight Cancer</h2>
+                <p>We're setting up this donation page to contribute to a reputable charity that supports oncological science and cancer immunotherapy. We're also researching organizations that are aimed at helping early diagnosed children fight the disease. Tony fought a long, hard battle with colon cancer and would have wanted to keep pushing to help progress modern medicine for this cause. Feel free to contact us for more information.</p>
+                <button class="donate-button" onclick="alert('Thank you for your interest in donating. Please visit our charity partners for secure donation processing.');">Donate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // Hash routing
+        function navigate(page) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Show selected page
+            const selectedPage = document.getElementById(page);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            // Update active nav link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector(`nav a[href="#${page}"]`).classList.add('active');
+
+            // Update URL hash
+            window.location.hash = `#${page}`;
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Handle hash changes
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1) || 'about';
+            navigate(hash);
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1) || 'about';
+            navigate(hash);
+        });
+
+        // Lightbox functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            // Prevent closing if clicking on image itself
+            if (event && event.target !== document.getElementById('lightbox')) {
+                return;
+            }
+
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts — Tony Durazzo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: rgb(66, 66, 66);
+      background-color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .site-header {
+      text-align: center;
+      padding: 60px 20px 0;
+    }
+
+    .site-title {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: 10px;
+      color: #212121;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .site-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    nav {
+      text-align: center;
+      padding: 30px 20px 40px;
+    }
+
+    nav a {
+      font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: rgb(168, 168, 168);
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #212121;
+    }
+
+    nav a.active {
+      color: #212121;
+    }
+
+    /* Content wrapper */
+    .content-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Article / Blog Post */
+    article {
+      padding-bottom: 100px;
+      margin-bottom: 0;
+    }
+
+    .entry-title {
+      font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+      color: rgb(33, 33, 33);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .entry-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .entry-dateline {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: rgb(168, 168, 168);
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .entry-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgb(66, 66, 66);
+      margin-bottom: 20px;
+    }
+
+    .entry-content p em {
+      font-style: italic;
+    }
+
+    .entry-content p strong {
+      font-weight: 700;
+    }
+
+    .entry-content a {
+      color: rgb(66, 66, 66);
+      text-decoration: underline;
+    }
+
+    /* Images */
+    .post-image {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .post-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-caption {
+      font-size: 13px;
+      color: rgb(168, 168, 168);
+      margin-top: 5px;
+    }
+
+    /* Video embed */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 30px 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Blog meta (comments, likes, share) */
+    .blog-meta {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: rgb(168, 168, 168);
+      text-transform: uppercase;
+    }
+
+    .blog-meta span {
+      margin: 0 12px;
+    }
+
+    .blog-meta .icon {
+      margin-right: 4px;
+    }
+
+    /* Map section */
+    .map-wrapper {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      filter: grayscale(100%);
+    }
+
+    /* Newsletter block */
+    .newsletter-block {
+      background-color: #f1f1f1;
+      padding: 50px 40px;
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .newsletter-block h3 {
+      font-size: 27px;
+      font-weight: 700;
+      color: #212121;
+      margin-bottom: 15px;
+    }
+
+    .newsletter-block p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgb(66, 66, 66);
+      margin-bottom: 25px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .newsletter-form input[type="email"] {
+      font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      padding: 12px 18px;
+      border: 1px solid #ccc;
+      background: #fff;
+      width: 280px;
+    }
+
+    .newsletter-form button {
+      font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 30px;
+      border: 2px solid #212121;
+      background: transparent;
+      color: #212121;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .newsletter-form button:hover {
+      background: #212121;
+      color: #fff;
+    }
+
+    .newsletter-block .privacy {
+      font-size: 12px;
+      color: rgb(168, 168, 168);
+    }
+
+    /* Separator */
+    .separator {
+      border: none;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .site-title {
+        font-size: 36px;
+        letter-spacing: 5px;
+      }
+
+      nav a {
+        font-size: 11px;
+        margin: 0 8px;
+      }
+
+      .content-wrapper {
+        padding: 0 20px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .newsletter-form input[type="email"] {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1 class="site-title"><a href="#">TONY DURAZZO</a></h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="active">POSTS</a>
+    <a href="#">ABOUT</a>
+    <a href="#">PHOTOS</a>
+    <a href="#">VIDEO</a>
+    <a href="#">MUSIC</a>
+    <a href="#">DONATE</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+
+    <!-- Article 1: Too Big To Die -->
+    <article>
+      <h2 class="entry-title"><a href="#">Too Big To Die: In Memoriam</a></h2>
+      <div class="entry-dateline">JUNE 03, 2017</div>
+      <div class="entry-content">
+        <p><em>(The eulogy for Tony Durazzo, as read by Justin Durazzo at the funeral service on Monday, May 22, 2017).</em></p>
+
+        <p>This is gonna be one big name drop...</p>
+
+        <p>So.  How can you sum up a life this big?  How do you write anything short of a novel to honor a guy like my uncle?  To capture the essence of the man in a few minutes of memorial reflection?</p>
+
+        <p>About eight or nine years ago, I had a very genuine conversation with Tonio (Tony, Antonio - however you knew him) while sitting at the bar of Frankies Spuntino in Carroll Gardens, Brooklyn as he filled me in on aspects of his life I hadn't yet encountered &mdash; and hundreds of characters he'd weave poetically into stories over Sunday dinners &mdash; but now was first the first time in my life I was beginning to witness them firsthand.</p>
+
+        <p>It occurred to me that someone should be writing his biography.  Here you have this native Neapolitan, New Yorker from our family of eight brothers and sisters, twenty first grandchildren (and more), and several dozen different social circles that don't know the other exists &mdash; this world traveler with a personality big enough to break through any wall, a Mets fan, a foodie, a music-head, a draftsman, an artist.  I told him he should write a book and he said, "Yeah but it can't come out until after I die."</p>
+
+        <p>And we'd just laugh.  Everything with Uncle Tony was laughter.  The kind of laughter so deep, you'd cry.  Sometimes to the point of not being able to breathe.</p>
+
+        <p>I mean, this was the man who once owned a pet monkey.  In New York City!  But somehow, with Tonio, it all made sense.  And if you asked him a question, he'd tell you a story.  And that's something I learned from him.  You could ask him what he had for dinner the night before and you'd get a 20-minute deep-dive into the origin of the restaurant, the chef, the sommelier, the Barolo... and you'd be glued to every second of it because his delivery was so effortless and every detail was so captivating.</p>
+
+        <p>And through this seemingly mundane question, through all the chapters and characters, the punchline, the long-winded detours and tangent stories, within these Tony Durazzo tales... you didn't realize what you were doing until afterward: you were learning.  You were always learning.  And that's the gift of Tonio.</p>
+
+        <p>And so the thing about Tony is that most of what he said, was true:</p>
+
+        <p>The 1000 Grateful Dead shows (even though he never bought a ticket).<br>
+The published meatball recipes in <a href="#">famous hipster Brooklyn cookbooks</a>.<br>
+Hanging with The Black Crowes, Kate Hudson and Chris Robinson, stories of DiCaprio, and Bill Clinton hanging out at Frankies 457. All true. A series of vivid, beautifully woven together stories that one could only aspire to.</p>
+
+        <p>If you mentioned his name around town, people would unanimously sing his praises. He's a legend. A Peter Pan-like character to some. Always wanting to stay young, spending time with those who kept him young, constantly pushing the bar for how much more he could experience &mdash; "the next best meal, the next best record, the greatest piece of art he's ever seen" &mdash; and the more he hung around, the more laughs would transpire, new stories get written and people stay inspired. Friends, friends of friends and families of friends of friends... it didn't matter how long you may have known him or even the last time you even saw him.  He was still always there, ready to pick things back up again. Ready to tell another story.</p>
+
+        <p>And that laugh though. If you're ever missing him, I urge you to watch a video of him telling you a joke - it'll all come right back to you.</p>
+
+        <p>As a child I was told (by my father Neil and Uncles Frank and Benny) that Tonio needed to be at the center of things. He always had to be where the action was. And to most of us, that's no surprise. His closest of friends (Frank Falcinelli) likened him to a Forrest Gump figure, for all the people he knows and places he'd been were mind-blowing.  Backstage lounge with Crosby Still and Nash? He was there. Hanging with the Jerry Garcia and the jam band? He was there.</p>
+
+        <p>This was the man who walked into the Fillmore East and Carnegie Hall whenever he so pleased.<br>
+The guy who got the very same cab driver more than a single time!</p>
+
+        <p>Dropped in from the upper deck at Madison Square Garden for a Jethro Tull concert.<br>
+Camping the Grand Canyon for weeks at a time.<br>
+Hair and beard so long,<br>
+working abroad for a handful of months in Riyadh (Saudi Arabia).<br>
+Penning with precision on the drafting desks of Durrell.<br>
+To dining at the Michelin star restaurants of the world.<br>
+Bring in Don Pintabona of Tribeca Grill, Renee Redzepi @ Noma, Danny Bowien from Mission Chinese, Dustin Yellin, and the celebrity all-star team at Pioneer Works...</p>
+
+        <p>He flew to Amsterdam at the drop of a dime.<br>
+Never wore a hat, sunglasses, gloves or bag.<br>
+Always present with passport in pocket.<br>
+Never drove or even had a license.</p>
+
+        <p>A father / uncle to kids rather than their (biological) parents.<br>
+He was never a slave to money or possessions.<br>
+A progressive thinking guy, who marched to the beat of his own drum and made up his own rules. He led me to believe that there's always more out there if you keep looking and you keep pushing. The world is ENDLESS, but life has it's deadline, so live it to its fullest.  And take it all in.  Surround yourself with good people.  Live your life like it's the only one you have &mdash; because it is.  And love each other.  It's too precious to hold grudges.</p>
+
+        <p>We're all a little bit older today. We're all a little bit poorer today. We're all a bit changed in some new way as we try to find our way forward.  Until we're richer once again.  As the stories start to surface and come across us like a warm summer breeze.  And the people who carry on his spirit around us take a bit of the Tony Durazzo with them everyday.</p>
+
+        <p>As I struggled to find a singular theme for this memoir,  I begin and then end with the idea that nothing really ever ends <strong>his</strong> story.  Even when the cancer took him.  You can take the flesh, but you can't take the man.</p>
+
+        <p>Uncle Tony, may your legend live on. You're <strong>too big to die.</strong></p>
+
+        <p><em>(Thanks to Damon Boelte who said it briefly, but best. Then play Brokedown Palace by the Grateful Dead cupping an iPhone speaker through the mic and sound system of the Church... "Fare you well, fare you well, we love you more than words can tell, listen to the river sing sweet songs, to rock our soul."):</em></p>
+      </div>
+
+      <!-- YouTube Embed -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/A9uyMjzmT3k" title="Grateful Dead - Brokedown Palace (Studio Version)" allowfullscreen></iframe>
+      </div>
+
+      <div class="blog-meta">
+        <span>&#x1F4AC; COMMENT</span>
+        <span>&hearts; 2 LIKES</span>
+        <span>&#x2190; SHARE</span>
+      </div>
+    </article>
+
+    <!-- Article 2: Larger Than Life -->
+    <article>
+      <h2 class="entry-title"><a href="#">Larger Than Life - A Celebration</a></h2>
+      <div class="entry-dateline">MAY 30, 2017</div>
+      <div class="entry-content">
+        <p>Please join us for a celebration of Tony's life - the way he always wanted - no crying! And all of his family, friends, friends of friends and their families in one place telling stories over food, drinks and music (a very prescriptive playlist he told us to play) and <em>more</em>. Spread the word to those who knew him and would also like to attend. Come share your own stories about the MAN and carry on his good vibes:</p>
+
+        <p><strong>Saturday, June 3, 2017</strong><br>
+6:30pm - 9:30pm<br>
+<a href="#">153 Pioneer Street, Brooklyn NY</a> (Adjacent to <a href="#">Pioneer Works</a>)<br>
+Food: <a href="#">Frankies Spuntino</a><br>
+Beverages: <a href="#">Grand Army</a></p>
+      </div>
+
+      <div class="post-image">
+        <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1496179189045-R3RGAKJB6INKB4E1JZDP/image-asset.jpeg" alt="The Studio">
+        <div class="image-caption">The Studio</div>
+      </div>
+
+      <!-- Google Map embed -->
+      <div class="map-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.5!2d-73.99!3d40.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sus!4v1496179000000" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="blog-meta">
+        <span>&#x1F4AC; COMMENT</span>
+        <span>&hearts; 1 LIKES</span>
+        <span>&#x2190; SHARE</span>
+      </div>
+    </article>
+
+    <!-- Article 3: In Memory -->
+    <article>
+      <div class="post-image">
+        <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495228609962-D62QCQF32IUOVE27YAQO/image-asset.jpeg" alt="Photo: Daniel Krieger">
+        <div class="image-caption">Photo: Daniel Krieger</div>
+      </div>
+
+      <h2 class="entry-title"><a href="#">In Memory of Antonio Durazzo (1949 - 2017)</a></h2>
+      <div class="entry-dateline">MAY 19, 2017</div>
+      <div class="entry-content">
+        <p>Last night, Tony left us peacefully after a long, hard-fought battle. We'll be using this site to share details about his life and keep you posted as we organize a memorial to celebrate the BEST life lived. He is a legend and has affected us all in the biggest ways possible.</p>
+
+        <p>&nbsp;</p>
+
+        <p>MEMORIAL SERVICES<br>
+Sunday, May 21, 2017<br>
+Viewing @ Harmon Funeral Home (2pm - 4pm / 7pm - 9pm)</p>
+
+        <p>Monday, May 22, 2017<br>
+Funeral Service @ Our Lady of Good Counsel (11am)</p>
+
+        <p>Saturday, June 3, 2017<br>
+Celebration @ 153 Pioneer Street - Adjacent to Pioneer Works (6:30pm - 9:30pm)<br>
+'Tony Durazzo: Larger Than Life'</p>
+
+        <p>Contact</p>
+      </div>
+
+      <div class="post-image">
+        <img src="https://images.squarespace-cdn.com/content/v1/591f511df5e231370ab678b4/1495234831346-0WFYHJ1NNKQ3JJ9NQE52/image-asset.jpeg" alt="">
+      </div>
+
+      <div class="blog-meta">
+        <span>&#x1F4AC; 1 COMMENT</span>
+        <span>&hearts; 35 LIKES</span>
+        <span>&#x2190; SHARE</span>
+      </div>
+    </article>
+
+    <!-- Article 4: Get Updates / Newsletter -->
+    <article>
+      <div class="entry-dateline">MAY 19, 2017</div>
+      <div class="newsletter-block">
+        <h3>Get Updates</h3>
+        <p>Sign up with your email address to receive updates when we post new photos, videos or info.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Email Address">
+          <button type="button">SIGN UP</button>
+        </div>
+        <p class="privacy">We respect your privacy.</p>
+      </div>
+
+      <div class="blog-meta">
+        <span>&hearts; 2 LIKES</span>
+        <span>&#x2190; SHARE</span>
+      </div>
+    </article>
+
+  </div>
+
+</body>
+</html>
